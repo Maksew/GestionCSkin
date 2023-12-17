@@ -4,6 +4,39 @@
              xmlns:local="clr-namespace:GestionCSkin"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Color x:Key="BrandOrange">#FF6B00</Color>
+        <Color x:Key="BrandPurple">#2F273C</Color>
+        <SolidColorBrush x:Key="CategoryBarBackground" Color="#FF413E5E"/>
+        <SolidColorBrush x:Key="MainBackgroundColor" Color="#252525"/>
+        <SolidColorBrush x:Key="NavBarBackground" Color="#2F273C"/>
+        <SolidColorBrush x:Key="ProductCategoryBorder" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="ProductCategoryBackground" Color="#8D6BA2"/>
+
+        <Style x:Key="NavButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="0,0,0,2"/>
+            <Setter Property="Padding" Value="10,10,10,10"/>
+            <Setter Property="Margin" Value="5,0"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+
+        <Style x:Key="CategoryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource CategoryBarBackground}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style x:Key="LastCategoryButtonStyle" TargetType="Button" BasedOn="{StaticResource CategoryButtonStyle}">
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+
     </Application.Resources>
 </Application>

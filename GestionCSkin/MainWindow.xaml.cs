@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +21,30 @@ namespace GestionCSkin
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void ProfitButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Ajoutez ici votre logique pour le bouton Calculer profit
+            MessageBox.Show("Calculer profit clicked");
+        }
+
+        private void StatsButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Ajoutez ici votre logique pour le bouton Statistiques
+            MessageBox.Show("Statistiques clicked");
+        }
+
+        private void SalesButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Ajoutez ici votre logique pour le bouton Ventes
+            MessageBox.Show("Ventes clicked");
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Ajoutez ici votre logique pour le bouton Ajouter
+            MessageBox.Show("Ajouter clicked");
         }
     }
 }
