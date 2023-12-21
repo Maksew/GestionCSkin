@@ -13,9 +13,6 @@ using System.Windows.Shapes;
 
 namespace GestionCSkin
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -25,9 +22,13 @@ namespace GestionCSkin
 
         private void ProfitButton_Click(object sender, RoutedEventArgs e)
         {
-            // Ajoutez ici votre logique pour le bouton Calculer profit
-            MessageBox.Show("Calculer profit clicked");
+            // Créer une instance de la fenêtre ProfitCalculator
+            ProfitCalculator profitCalculatorWindow = new ProfitCalculator();
+
+            // Afficher la fenêtre ProfitCalculator
+            profitCalculatorWindow.Show();
         }
+
 
         private void StatsButton_Click(object sender, RoutedEventArgs e)
         {
@@ -45,6 +46,11 @@ namespace GestionCSkin
         {
             // Ajoutez ici votre logique pour le bouton Ajouter
             MessageBox.Show("Ajouter clicked");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
