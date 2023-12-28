@@ -40,22 +40,25 @@ namespace GestionCSkin
             arrow.Visibility = Visibility.Visible;
             txtProfitResult.Visibility = Visibility.Visible;
 
+            double arrowPosition = CalculateArrowPosition(profit);
+            Canvas.SetLeft(arrow, arrowPosition);
+            Canvas.SetTop(arrow, 25);
+
             txtProfitResult.Text = profit.ToString("F2");
             Color zoneColor = GetColorForProfit(profit);
             txtProfitResult.Foreground = new SolidColorBrush(zoneColor);
 
-            double arrowPosition = CalculateArrowPosition(profit);
-            Canvas.SetLeft(arrow, arrowPosition);
-            Canvas.SetTop(arrow, 25); 
-
             txtProfitResult.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
-            Canvas.SetLeft(txtProfitResult, arrowPosition - (txtProfitResult.DesiredSize.Width / 2));
-            Canvas.SetTop(txtProfitResult, Canvas.GetTop(arrow) + 10); 
+
+            double arrowCenter = arrowPosition + (ArrowWidth / 2);
+            double textCenter = txtProfitResult.DesiredSize.Width / 2;
+            Canvas.SetLeft(txtProfitResult, arrowCenter - textCenter);
+            Canvas.SetTop(txtProfitResult, Canvas.GetTop(arrow) + 20); 
         }
+
 
         private double CalculateArrowPosition(double profit)
         {
-            // Define the color zones and their corresponding profit thresholds.
             var zones = new[]
             {
                 (start: 0.0, end: 80.0, minProfit: 50.0, maxProfit: double.PositiveInfinity),   // Dark Green zone
@@ -65,19 +68,10 @@ namespace GestionCSkin
                 (start: 320.0, end: CanvasWidth, minProfit: double.NegativeInfinity, maxProfit: 4.99) // Red zone
             };
 
-            // Find the current zone based on the profit.
             var currentZone = zones.First(zone => profit >= zone.minProfit && profit <= zone.maxProfit);
-
-            // Normalize the profit within the current zone's range. Reverse the normalization.
             double normalizedProfit = 1 - ((profit - currentZone.minProfit) / (currentZone.maxProfit - currentZone.minProfit));
-
-            // Calculate the arrow's position within the zone.
             double positionWithinZone = normalizedProfit * (currentZone.end - currentZone.start);
-
-            // Compute the arrow's absolute position on the canvas.
             double arrowPosition = currentZone.start + positionWithinZone;
-
-            // Ensure the arrow does not go beyond the zone's boundaries.
             arrowPosition = Math.Min(Math.Max(arrowPosition, currentZone.start), currentZone.end - ArrowWidth);
 
             return arrowPosition;
