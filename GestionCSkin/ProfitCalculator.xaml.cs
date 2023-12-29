@@ -61,37 +61,31 @@ namespace GestionCSkin
         {
             var zones = new[]
             {
-                (start: 0.0, end: 80.0, minProfit: 50.0, maxProfit: 300.0), // Dark Green zone
+                (start: 0.0, end: 80.0, minProfit: 50.0, maxProfit: 200.0), // Dark Green zone
                 (start: 80.0, end: 160.0, minProfit: 30.0, maxProfit: 49.99), // Light Green zone
                 (start: 160.0, end: 240.0, minProfit: 15.0, maxProfit: 29.99), // Yellow zone
                 (start: 240.0, end: 320.0, minProfit: 5.0, maxProfit: 14.99), // Orange zone
                 (start: 320.0, end: CanvasWidth, minProfit: -50.0, maxProfit: 4.99) // Red zone
             };
 
-            // Trouvez la zone actuelle en utilisant FirstOrDefault
             var currentZone = zones.FirstOrDefault(zone => profit >= zone.minProfit && profit <= zone.maxProfit);
 
-            // Si aucun élément n'est trouvé, c'est que le profit est hors des plages prévues
             if (currentZone == default((double, double, double, double)))
             {
                 if (profit < zones[0].minProfit)
                 {
-                    // Profit est inférieur au min de la première zone, placer à l'extrémité droite
                     return CanvasWidth - ArrowWidth;
                 }
                 else
                 {
-                    // Profit est supérieur au max de la dernière zone, placer à l'extrémité gauche
                     return 0.0;
                 }
             }
 
-            // Inverser la direction de la flèche pour toutes les zones
             double normalizedProfit = (currentZone.maxProfit - profit) / (currentZone.maxProfit - currentZone.minProfit);
             double positionWithinZone = normalizedProfit * (currentZone.end - currentZone.start);
             double arrowPosition = currentZone.start + positionWithinZone;
 
-            // S'assurer que la flèche reste dans les limites de la zone actuelle
             arrowPosition = Math.Max(currentZone.start, Math.Min(arrowPosition, currentZone.end - ArrowWidth));
 
             return arrowPosition;
