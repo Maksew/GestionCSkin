@@ -112,5 +112,10 @@ namespace GestionCSkin
             double fees = sellPrice * feePercentage;
             return sellPrice - buyPrice - fees;
         }
+
+        private void txtBuyPrice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

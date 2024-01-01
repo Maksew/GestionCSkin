@@ -14,13 +14,14 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" 
-                            CornerRadius="0" BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="6">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#9252e5"/>
+                                <Setter Property="Background" Value="#8f45ee"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -62,9 +63,17 @@
             <TextBlock Text="Prix d'achat" Grid.Column="0" HorizontalAlignment="Left" Foreground="White" Margin="30,52,0,-52" FontFamily="Arial Black" Width="114" FontSize="16"/>
             <TextBlock Text="Prix de Vente" Grid.Column="1" HorizontalAlignment="Left" Foreground="White" Margin="71,52,0,-61" FontFamily="Arial Black" FontSize="16" Width="128"/>
 
-            <TextBox x:Name="txtBuyPrice" Grid.Column="0" Margin="-11,78,49,-68" Foreground="Black" Padding="5" TextAlignment="Left"/>
-            <TextBox x:Name="txtSellPrice" Margin="39,78,2,-68" Foreground="Black" Padding="5" TextAlignment="Left" Grid.Column="1"/>
+            <!-- Border avec CornerRadius pour le txtBuyPrice -->
+            <Border Grid.Column="0" Margin="-11,78,49,-68" CornerRadius="5" Background="White">
+                <TextBox x:Name="txtBuyPrice" Foreground="Black" Padding="5" TextAlignment="Left" BorderThickness="0" TextChanged="txtBuyPrice_TextChanged"/>
+            </Border>
+
+            <!-- Border avec CornerRadius pour le txtSellPrice -->
+            <Border Grid.Column="1" Margin="39,78,2,-68" CornerRadius="5" Background="White">
+                <TextBox x:Name="txtSellPrice" Foreground="Black" Padding="5" TextAlignment="Left" BorderThickness="0"/>
+            </Border>
         </Grid>
+
 
         <Canvas Grid.Row="3" Height="50" Margin="192,56,192,167">
             <!-- Static segments of the progress bar -->
@@ -83,7 +92,7 @@
 
 
         <Button Content="Calculer" Grid.Row="3" HorizontalAlignment="Center" Width="124" Margin="0,154,0,82"
-            Click="CalculateProfit_Click" Style="{StaticResource CalculateButtonStyle}"/>
+            Click="CalculateProfit_Click" BorderThickness="0" Style="{StaticResource CalculateButtonStyle}"/>
 
     </Grid>
 </Window>
