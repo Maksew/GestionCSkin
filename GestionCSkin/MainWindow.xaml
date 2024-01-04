@@ -30,7 +30,7 @@
 
         <!-- Barre de catégories de produits collés -->
         <UniformGrid Grid.Row="1" Columns="10" Background="{StaticResource ProductCategoryBackground}">
-            <Button Content="Knife" Style="{StaticResource CategoryButtonStyle}" />
+            <Button Content="Knife" Style="{StaticResource CategoryButtonStyle}" Click="Button_Click_1" />
             <Button Content="Rifle" Style="{StaticResource CategoryButtonStyle}" />
             <Button Content="Gants" Style="{StaticResource CategoryButtonStyle}" />
             <Button Content="Smg" Style="{StaticResource CategoryButtonStyle}" />
@@ -50,7 +50,6 @@
                 <ColumnDefinition Width="219*"/>
                 <ColumnDefinition Width="181*"/>
             </Grid.ColumnDefinitions>
-            <!-- Votre contenu principal -->
         </Grid>
     </Grid>
 </Window>
