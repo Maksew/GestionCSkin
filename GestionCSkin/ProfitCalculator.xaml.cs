@@ -8,13 +8,42 @@ namespace GestionCSkin
 {
     public partial class ProfitCalculator : Window
     {
+
+        private static ProfitCalculator instance;
+
+        public static ProfitCalculator Instance
+        {
+            get
+            {
+                if (instance == null || instance.IsClosed)
+                {
+                    instance = new ProfitCalculator();
+                }
+                return instance;
+            }
+        }
+
         private const double CanvasWidth = 400; 
-        private const double ArrowWidth = 20; 
+        private const double ArrowWidth = 20;
+
+        public bool IsClosed { get; private set; }
 
         public ProfitCalculator()
         {
             InitializeComponent();
+            IsClosed = false;
+            this.Closed += (sender, e) => IsClosed = true;
         }
+
+        #region NavButtons
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            var skinDetailsWindow = NewSkin.Instance;
+            skinDetailsWindow.Show();
+            skinDetailsWindow.Focus();
+        }
+        #endregion
+
 
         private void CalculateProfit_Click(object sender, RoutedEventArgs e)
         {

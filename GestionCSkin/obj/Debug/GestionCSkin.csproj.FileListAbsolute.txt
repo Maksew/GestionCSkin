@@ -17,3 +17,5 @@ C:\Users\Maxime\source\repos\GestionCSkin\GestionCSkin\obj\Debug\GestionCSkin.ex
 C:\Users\Maxime\source\repos\GestionCSkin\GestionCSkin\obj\Debug\GestionCSkin.pdb
 C:\Users\Maxime\source\repos\GestionCSkin\GestionCSkin\obj\Debug\ProfitCalculator.baml
 C:\Users\Maxime\source\repos\GestionCSkin\GestionCSkin\obj\Debug\ProfitCalculator.g.cs
+C:\Users\Maxime\source\repos\GestionCSkin\GestionCSkin\obj\Debug\NewSkin.baml
+C:\Users\Maxime\source\repos\GestionCSkin\GestionCSkin\obj\Debug\NewSkin.g.cs

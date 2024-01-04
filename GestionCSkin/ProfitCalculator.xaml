@@ -53,7 +53,7 @@
                     IsEnabled="False"/> 
                 <Button Content="Statistics" Style="{StaticResource NavButtonStyle}" />
                 <Button Content="Sales" Style="{StaticResource NavButtonStyle}" />
-                <Button Content="Add" Style="{StaticResource NavButtonStyle}" Margin="0,0,30,0" />
+                <Button Content="Add" Style="{StaticResource NavButtonStyle}" Margin="0,0,30,0" Click="AddButton_Click" />
             </StackPanel>
         </DockPanel>
 

@@ -67,12 +67,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewSkin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProfitCalculator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NewSkin.xaml.cs">
+      <DependentUpon>NewSkin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProfitCalculator.xaml.cs">
       <DependentUpon>ProfitCalculator.xaml</DependentUpon>
     </Compile>
