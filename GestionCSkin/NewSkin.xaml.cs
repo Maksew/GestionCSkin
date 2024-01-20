@@ -152,11 +152,46 @@ namespace GestionCSkin
             openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg";
             if (openFileDialog.ShowDialog() == true)
             {
-                Uri fileUri = new Uri(openFileDialog.FileName);
-                // Supposons que vous avez un contrôle Image nommé LeftImage dans votre XAML
-                LeftImage.Source = new BitmapImage(fileUri); // Mettez à jour le nom du contrôle Image si nécessaire
+                BitmapImage userImage = new BitmapImage(new Uri(openFileDialog.FileName));
+
+                LeftImage.Source = userImage;
+                LeftImage.Stretch = Stretch.UniformToFill; 
+
+                TextBlock textBlock = FindVisualChild<TextBlock>(sender as Button);
+                if (textBlock != null)
+                {
+                    textBlock.Visibility = Visibility.Collapsed;
+                }
             }
         }
+
+        private T FindVisualChild<T>(DependencyObject parent) where T : DependencyObject
+        {
+            if (parent == null) return null;
+
+            T foundChild = null;
+            int childrenCount = VisualTreeHelper.GetChildrenCount(parent);
+
+            for (int i = 0; i < childrenCount; i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                if (child is T)
+                {
+                    foundChild = (T)child;
+                    break;
+                }
+                else
+                {
+                    foundChild = FindVisualChild<T>(child);
+
+                    if (foundChild != null)
+                        break;
+                }
+            }
+            return foundChild;
+        }
+
+
 
 
 
