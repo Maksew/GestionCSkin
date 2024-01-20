@@ -52,7 +52,7 @@ namespace GestionCSkin
             InitializeComponent();
             IsClosed = false;
             this.Closed += NewSkin_Closed;
-            FloatSlider.ValueChanged += FloatSlider_ValueChanged; // S'assurer que le gestionnaire d'événements est attaché
+            FloatSlider.ValueChanged += FloatSlider_ValueChanged; 
         }
 
         #region NavButtons
@@ -190,6 +190,20 @@ namespace GestionCSkin
             }
             return foundChild;
         }
+
+        private void PriceInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(PriceInput.Text))
+            {
+                LeftPrice.Text = PriceInput.Text + " €";
+            }
+            else
+            {
+                LeftPrice.Text = string.Empty;
+            }
+        }
+
+
 
 
 

@@ -66,11 +66,11 @@
                         <TextBlock Text="Click to add an image" Foreground="White" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Grid>
                 </Button>
-                <TextBlock x:Name="LeftSkinName" Text="{Binding Text, ElementName=SkinNameInput}" Foreground="White" FontSize="18" Margin="0,5" Width="120" TextAlignment="Center"/>
+                <TextBlock x:Name="LeftSkinName" Text="{Binding Text, ElementName=SkinNameInput}" Foreground="White" FontSize="18" Margin="0,5" Width="205" TextAlignment="Center"/>
                 <TextBlock Text="Prix d'achat :" FontWeight="Bold" Foreground="#B5B5B5" FontSize="14"/>
-                <TextBlock x:Name="LeftPrice" Foreground="White" Margin="0,5"/>
+                <TextBlock x:Name="LeftPrice" Text="{Binding Text, ElementName=PriceInput}" Foreground="White" Margin="0,5"/>
                 <TextBlock Text="Type :" FontWeight="Bold" Foreground="#B5B5B5" FontSize="14"/>
-                <TextBlock x:Name="LeftType" Foreground="White"/>
+                <TextBlock x:Name="LeftType" Text="{Binding Text, ElementName=TypeInput}" Foreground="White"/>
                 <Canvas Height="50" Width="200">
                     <Rectangle Fill="Green" Width="40" Height="15" Canvas.Left="0" Canvas.Top="22" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <Rectangle Fill="#FF6BD46B" Width="40" Height="15" Canvas.Left="40" Canvas.Top="22" HorizontalAlignment="Center" VerticalAlignment="Top"/>
@@ -91,7 +91,7 @@
             <TextBox x:Name="SkinNameInput" Width="176" Margin="0,0,0,10" Height="25"/>
 
             <Label Content="Prix d'achat" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="185"/>
-            <TextBox x:Name="PriceInput" Width="175" Margin="0,0,0,10"/>
+            <TextBox x:Name="PriceInput" Width="175" Margin="0,0,0,10" TextChanged="PriceInput_TextChanged"/>
 
             <Label Content="Type" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="185"/>
             <TextBox x:Name="TypeInput" Width="175" Margin="0,0,0,10"/>
