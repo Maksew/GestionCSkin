@@ -2,7 +2,6 @@ C:\Users\Maxime\source\repos\GestionCSkin\GestionCSkin\bin\Debug\GestionCSkin.ex
 C:\Users\Maxime\source\repos\GestionCSkin\GestionCSkin\bin\Debug\GestionCSkin.exe
 C:\Users\Maxime\source\repos\GestionCSkin\GestionCSkin\bin\Debug\GestionCSkin.pdb
 C:\Users\Maxime\source\repos\GestionCSkin\GestionCSkin\obj\Debug\GestionCSkin.csproj.AssemblyReference.cache
-C:\Users\Maxime\source\repos\GestionCSkin\GestionCSkin\obj\Debug\GestionCSkin.csproj.SuggestedBindingRedirects.cache
 C:\Users\Maxime\source\repos\GestionCSkin\GestionCSkin\obj\Debug\MainWindow.baml
 C:\Users\Maxime\source\repos\GestionCSkin\GestionCSkin\obj\Debug\MainWindow.g.cs
 C:\Users\Maxime\source\repos\GestionCSkin\GestionCSkin\obj\Debug\App.g.cs
