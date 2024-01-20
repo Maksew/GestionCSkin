@@ -70,7 +70,7 @@
                 <TextBlock Text="Prix d'achat :" FontWeight="Bold" Foreground="#B5B5B5" FontSize="14"/>
                 <TextBlock x:Name="LeftPrice" Text="{Binding Text, ElementName=PriceInput}" Foreground="White" Margin="0,5"/>
                 <TextBlock Text="Type :" FontWeight="Bold" Foreground="#B5B5B5" FontSize="14"/>
-                <TextBlock x:Name="LeftType" Text="{Binding Text, ElementName=TypeInput}" Foreground="White"/>
+                <TextBlock x:Name="LeftType" Text="{Binding Text, ElementName=TypeInput}" Foreground="White"  Margin="0,5"/>
                 <Canvas Height="50" Width="200">
                     <Rectangle Fill="Green" Width="40" Height="15" Canvas.Left="0" Canvas.Top="22" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <Rectangle Fill="#FF6BD46B" Width="40" Height="15" Canvas.Left="40" Canvas.Top="22" HorizontalAlignment="Center" VerticalAlignment="Top"/>
@@ -91,10 +91,20 @@
             <TextBox x:Name="SkinNameInput" Width="176" Margin="0,0,0,10" Height="25"/>
 
             <Label Content="Prix d'achat" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="185"/>
-            <TextBox x:Name="PriceInput" Width="175" Margin="0,0,0,10" TextChanged="PriceInput_TextChanged"/>
+            <TextBox x:Name="PriceInput" Width="176" Margin="0,0,0,10" TextChanged="PriceInput_TextChanged" Height="25"/>
 
             <Label Content="Type" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="185"/>
-            <TextBox x:Name="TypeInput" Width="175" Margin="0,0,0,10"/>
+            <ComboBox x:Name="TypeInput" Width="176" Margin="0,0,0,10" Height="25">
+                <ComboBoxItem Content="Knife" />
+                <ComboBoxItem Content="Rifle" />
+                <ComboBoxItem Content="Gants" />
+                <ComboBoxItem Content="Smg" />
+                <ComboBoxItem Content="Pistol" />
+                <ComboBoxItem Content="Others" />
+                <ComboBoxItem Content="Agents" />
+                <ComboBoxItem Content="Heavy" />
+            </ComboBox>
+
 
             <StackPanel Orientation="Horizontal" Margin="0,10" Width="175">
                 <Label Content="Float :" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="90"/>
