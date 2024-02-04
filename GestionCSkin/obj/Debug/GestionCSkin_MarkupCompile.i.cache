@@ -9,12 +9,12 @@ GestionCSkin
 none
 false
 DEBUG;TRACE
-C:\Users\Maxime\source\repos\GestionCSkin\GestionCSkin\App.xaml
-32023633778
+C:\Users\Maxime\source\repos\GestionCSkin\GestionCSkin\src\main\App.xaml
+31444736209
 
-8-1670027714
+81859397808
 13-1310406943
-MainWindow.xaml;NewSkin.xaml;ProfitCalculator.xaml;
+src\main\MainWindow.xaml;src\main\NewSkin.xaml;src\main\ProfitCalculator.xaml;
 
-False
+True
 

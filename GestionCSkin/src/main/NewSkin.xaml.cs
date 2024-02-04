@@ -16,8 +16,7 @@ namespace GestionCSkin
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             double sliderValue = (double)value;
-            // Suppose that the Canvas width is 200
-            return sliderValue * 200; // Adjust this formula as needed
+            return sliderValue * 200; 
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -74,7 +73,6 @@ namespace GestionCSkin
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            // Mettez à jour la partie gauche avec les valeurs entrées par l'utilisateur
             LeftSkinName.Text = SkinNameInput.Text;
             LeftPrice.Text = $"Prix d'achat : {PriceInput.Text} €";
             LeftType.Text = $"Type : {TypeInput.Text}";
@@ -90,61 +88,59 @@ namespace GestionCSkin
 
         private void UpdateProfitDisplay(double sliderValue)
         {
-
-            arrow.Visibility = Visibility.Visible;
-            LeftFloatValue.Visibility = Visibility.Visible;
-
+            double zoneWidth = 40;
             double arrowPosition = CalculateArrowPosition(sliderValue);
             Canvas.SetLeft(arrow, arrowPosition);
-            Canvas.SetTop(arrow, 25);
 
-            LeftFloatValue.Text = sliderValue.ToString("F3") + " (valeur)";
-            Color zoneColor = GetColorForSliderValue(sliderValue);
-            LeftFloatValue.Foreground = new SolidColorBrush(zoneColor);
+            if (sliderValue < 0.07) // Factory New
+                arrowPosition = sliderValue / 0.07 * zoneWidth;
+            else if (sliderValue < 0.15) // Minimal Wear
+                arrowPosition = (sliderValue - 0.07) / (0.15 - 0.07) * zoneWidth + zoneWidth;
+            else if (sliderValue < 0.38) // Field-Tested
+                arrowPosition = (sliderValue - 0.15) / (0.38 - 0.15) * zoneWidth + zoneWidth * 2;
+            else if (sliderValue < 0.45) // Well-Worn
+                arrowPosition = (sliderValue - 0.38) / (0.45 - 0.38) * zoneWidth + zoneWidth * 3;
+            else // Battle-Scarred
+                arrowPosition = (sliderValue - 0.45) / (1 - 0.45) * zoneWidth + zoneWidth * 4;
+
+            Canvas.SetLeft(arrow, arrowPosition);
+
+            arrow.Visibility = Visibility.Visible;
+            Color arrowColor = GetColorForSliderValue(sliderValue);
+
+            double arrowTop = 15 + 15; 
+            Canvas.SetTop(arrow, arrowTop);
+
+            double textTop = arrowTop + 15 + 4; 
+            Canvas.SetTop(LeftFloatValue, textTop);
+
+            LeftFloatValue.Foreground = new SolidColorBrush(GetColorForSliderValue(sliderValue));
+            LeftFloatValue.Text = sliderValue.ToString("F3") + "";
+            Canvas.SetLeft(LeftFloatValue, arrowPosition - (LeftFloatValue.ActualWidth / 2) + 10);
         }
 
-        private double CalculateArrowPosition(double profit)
+
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var zones = new[]
-            {
-                (start: 0.0, end: 80.0, minProfit: 50.0, maxProfit: 200.0), // Dark Green zone
-                (start: 80.0, end: 160.0, minProfit: 30.0, maxProfit: 49.99), // Light Green zone
-                (start: 160.0, end: 240.0, minProfit: 15.0, maxProfit: 29.99), // Yellow zone
-                (start: 240.0, end: 320.0, minProfit: 5.0, maxProfit: 14.99), // Orange zone
-                (start: 320.0, end: CanvasWidth, minProfit: -50.0, maxProfit: 4.99) // Red zone
-            };
-
-            var currentZone = zones.FirstOrDefault(zone => profit >= zone.minProfit && profit <= zone.maxProfit);
-
-            if (currentZone == default((double, double, double, double)))
-            {
-                if (profit < zones[0].minProfit)
-                {
-                    return CanvasWidth - ArrowWidth;
-                }
-                else
-                {
-                    return 0.0;
-                }
-            }
-
-            double normalizedProfit = (currentZone.maxProfit - profit) / (currentZone.maxProfit - currentZone.minProfit);
-            double positionWithinZone = normalizedProfit * (currentZone.end - currentZone.start);
-            double arrowPosition = currentZone.start + positionWithinZone;
-
-            arrowPosition = Math.Max(currentZone.start, Math.Min(arrowPosition, currentZone.end - ArrowWidth));
-
-            return arrowPosition;
+            double sliderValue = (double)value;
+            double canvasWidth = 200;
+            double arrowWidth = 20; 
+            return Math.Max(0, Math.Min(canvasWidth - arrowWidth, sliderValue * (canvasWidth - arrowWidth)));
         }
 
         private Color GetColorForSliderValue(double sliderValue)
         {
-            if (sliderValue < 0.2) return Colors.Red;
-            else if (sliderValue < 0.4) return Colors.Orange;
-            else if (sliderValue < 0.6) return Colors.Yellow;
-            else if (sliderValue < 0.8) return Colors.LightGreen;
-            else return Colors.DarkGreen;
+            sliderValue = Math.Min(sliderValue, 0.999);
+
+
+            if (sliderValue >= 0.45) return Colors.Red; // Battle-Scarred
+            else if (sliderValue >= 0.38) return Colors.Orange; // Well-Worn
+            else if (sliderValue >= 0.15) return Colors.Yellow; // Field-Tested
+            else if (sliderValue >= 0.07) return Colors.LightGreen; // Minimal Wear
+            else return Colors.DarkGreen; // Factory New
         }
+
 
         private void UploadImage_Click(object sender, RoutedEventArgs e)
         {
@@ -164,6 +160,16 @@ namespace GestionCSkin
                 }
             }
         }
+
+        private double CalculateArrowPosition(double sliderValue)
+        {
+            sliderValue = Math.Min(sliderValue, 0.999);
+            double totalWidth = 200.0; 
+            double offset = ArrowWidth / 2.0;
+            double positionWithinTotalWidth = sliderValue / 0.999 * totalWidth;
+            return positionWithinTotalWidth - offset;
+        }
+
 
         private T FindVisualChild<T>(DependencyObject parent) where T : DependencyObject
         {
@@ -202,12 +208,6 @@ namespace GestionCSkin
                 LeftPrice.Text = string.Empty;
             }
         }
-
-
-
-
-
-
 
     }
 
