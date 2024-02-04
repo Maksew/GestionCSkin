@@ -32,8 +32,8 @@
 
     <Grid Background="{StaticResource MainBackgroundColor}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="351*"/>
-            <ColumnDefinition Width="449*"/>
+            <ColumnDefinition Width="389*"/>
+            <ColumnDefinition Width="411*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -58,7 +58,7 @@
         </DockPanel>
 
         <!-- Partie gauche pour afficher les éléments ajoutés -->
-        <Border Grid.Column="0" Background="#333" Padding="20" Margin="30,24,65,23" Grid.Row="1">
+        <Border Grid.Column="0" Background="#333" Padding="20" Margin="58,24,59,23" Grid.Row="1">
             <StackPanel Margin="-20,-1,-20,-20">
                 <Button Background="#555" Height="136" Width="167" Click="UploadImage_Click" Padding="0" Cursor="Hand">
                     <Grid>
@@ -67,12 +67,12 @@
                     </Grid>
                 </Button>
                 <TextBlock x:Name="LeftSkinName" Text="{Binding Text, ElementName=SkinNameInput}" Foreground="White" FontSize="18" Margin="0,5" Width="205" TextAlignment="Center"/>
-                <TextBlock Text="Prix d'achat :" FontWeight="Bold" Foreground="#B5B5B5" FontSize="14" Width="215"/>
-                <TextBlock x:Name="LeftPrice" Text="{Binding Text, ElementName=PriceInput}" Foreground="White" Margin="0,5" Width="215"/>
-                <TextBlock Text="Type :" FontWeight="Bold" Foreground="#B5B5B5" FontSize="14" Width="215"/>
-                <TextBlock x:Name="LeftType" Text="{Binding Text, ElementName=TypeInput}" Foreground="White"  Margin="0,5" Width="215"/>
-                <Canvas Height="110" Width="216" x:Name="skinCanvas">
-                    <Rectangle Fill="Green" Width="40" Height="20" Canvas.Left="10" Canvas.Top="17" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Text="Prix d'achat :" FontWeight="Bold" Foreground="#B5B5B5" FontSize="16" Width="215"/>
+                <TextBlock x:Name="LeftPrice" Text="{Binding Text, ElementName=PriceInput}" FontSize="16" Foreground="White" Margin="0,5" Width="215"/>
+                <TextBlock Text="Type :" FontWeight="Bold" Foreground="#B5B5B5" FontSize="16" Width="215"/>
+                <TextBlock x:Name="LeftType" Text="{Binding Text, ElementName=TypeInput}" Foreground="White" FontSize="16"  Margin="0,5" Width="215"/>
+                <Canvas Height="107" Width="216" x:Name="skinCanvas">
+                    <Rectangle Fill="Green" Width="40" Height="20" Canvas.Left="10" Canvas.Top="17" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Rectangle Fill="#FF6BD46B" Width="40" Height="20" Canvas.Left="50" Canvas.Top="17" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     <Rectangle Fill="Yellow" Width="40" Height="20" Canvas.Left="90" Canvas.Top="17" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     <Rectangle Fill="Orange" Width="40" Height="20" Canvas.Left="130" Canvas.Top="17" HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -110,8 +110,8 @@
                 <Label Content="Float :" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="90"/>
                 <TextBlock x:Name="FloatValueTextBlock" Text="{Binding Value, ElementName=FloatSlider, StringFormat=\{0:F3\}}" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="55" RenderTransformOrigin="-0.055,0.794" Height="25"/>
             </StackPanel>
-            <Slider x:Name="FloatSlider" Minimum="0" Maximum="0.999" TickFrequency="0.01" IsSnapToTickEnabled="True" Width="292" Margin="0,0,0,10"/>
-            <Button Content="Ajouter" Click="AddButton_Click" Width="175" Margin="0,0,0,10"/>
+            <Slider x:Name="FloatSlider" Minimum="0" Maximum="0.999" TickFrequency="0.01" IsSnapToTickEnabled="True" Width="216" Margin="0,0,0,10"/>
+            <Button Content="Ajouter" FontSize="14" Width="176" Margin="0,10,0,10" BorderThickness="0" Style="{StaticResource CalculateButtonStyle}" Height="31"/>
         </StackPanel>
 
     </Grid>

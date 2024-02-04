@@ -16,8 +16,7 @@ namespace GestionCSkin
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             double sliderValue = (double)value;
-            // Suppose that the Canvas width is 200
-            return sliderValue * 200; // Adjust this formula as needed
+            return sliderValue * 200; 
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -74,7 +73,6 @@ namespace GestionCSkin
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            // Mettez à jour la partie gauche avec les valeurs entrées par l'utilisateur
             LeftSkinName.Text = SkinNameInput.Text;
             LeftPrice.Text = $"Prix d'achat : {PriceInput.Text} €";
             LeftType.Text = $"Type : {TypeInput.Text}";
@@ -90,7 +88,6 @@ namespace GestionCSkin
 
         private void UpdateProfitDisplay(double sliderValue)
         {
-            // Assuming each rectangle is 40 units wide and there are 5 rectangles
             double zoneWidth = 40;
             double arrowPosition = CalculateArrowPosition(sliderValue);
             Canvas.SetLeft(arrow, arrowPosition);
@@ -111,16 +108,14 @@ namespace GestionCSkin
             arrow.Visibility = Visibility.Visible;
             Color arrowColor = GetColorForSliderValue(sliderValue);
 
-            double arrowTop = 15 + 15; // The top position of the rectangles plus their height plus some padding
+            double arrowTop = 15 + 15; 
             Canvas.SetTop(arrow, arrowTop);
 
-            // Assuming the height of the arrow is 20, set the top position of the text just below the arrow
-            double textTop = arrowTop + 15 + 4; // Additional padding below the arrow
+            double textTop = arrowTop + 15 + 4; 
             Canvas.SetTop(LeftFloatValue, textTop);
 
             LeftFloatValue.Foreground = new SolidColorBrush(GetColorForSliderValue(sliderValue));
             LeftFloatValue.Text = sliderValue.ToString("F3") + "";
-            // Center the text on the arrow
             Canvas.SetLeft(LeftFloatValue, arrowPosition - (LeftFloatValue.ActualWidth / 2) + 10);
         }
 
@@ -129,10 +124,8 @@ namespace GestionCSkin
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             double sliderValue = (double)value;
-            double canvasWidth = 200; // Replace with the actual canvas width if different
-
-            // This calculation ensures that the arrow does not go outside the canvas
-            double arrowWidth = 20; // Replace with the actual arrow width
+            double canvasWidth = 200;
+            double arrowWidth = 20; 
             return Math.Max(0, Math.Min(canvasWidth - arrowWidth, sliderValue * (canvasWidth - arrowWidth)));
         }
 
@@ -170,19 +163,10 @@ namespace GestionCSkin
 
         private double CalculateArrowPosition(double sliderValue)
         {
-            // Adjust the slider value to the maximum of 0.999 if necessary
             sliderValue = Math.Min(sliderValue, 0.999);
-
-            // The total width of all rectangles
-            double totalWidth = 200.0; // Assuming the total width of the color bar is 200
-
-            // The offset for the arrow's position to start from the left edge of the first rectangle
+            double totalWidth = 200.0; 
             double offset = ArrowWidth / 2.0;
-
-            // Calculate the position within the total width
             double positionWithinTotalWidth = sliderValue / 0.999 * totalWidth;
-
-            // Adjust the arrow's position to align with the left edge of the color bar
             return positionWithinTotalWidth - offset;
         }
 
@@ -224,6 +208,7 @@ namespace GestionCSkin
                 LeftPrice.Text = string.Empty;
             }
         }
+
     }
 
 
