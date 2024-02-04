@@ -90,61 +90,64 @@ namespace GestionCSkin
 
         private void UpdateProfitDisplay(double sliderValue)
         {
-
-            arrow.Visibility = Visibility.Visible;
-            LeftFloatValue.Visibility = Visibility.Visible;
-
+            // Assuming each rectangle is 40 units wide and there are 5 rectangles
+            double zoneWidth = 40;
             double arrowPosition = CalculateArrowPosition(sliderValue);
             Canvas.SetLeft(arrow, arrowPosition);
-            Canvas.SetTop(arrow, 25);
 
-            LeftFloatValue.Text = sliderValue.ToString("F3") + " (valeur)";
-            Color zoneColor = GetColorForSliderValue(sliderValue);
-            LeftFloatValue.Foreground = new SolidColorBrush(zoneColor);
+            if (sliderValue < 0.07) // Factory New
+                arrowPosition = sliderValue / 0.07 * zoneWidth;
+            else if (sliderValue < 0.15) // Minimal Wear
+                arrowPosition = (sliderValue - 0.07) / (0.15 - 0.07) * zoneWidth + zoneWidth;
+            else if (sliderValue < 0.38) // Field-Tested
+                arrowPosition = (sliderValue - 0.15) / (0.38 - 0.15) * zoneWidth + zoneWidth * 2;
+            else if (sliderValue < 0.45) // Well-Worn
+                arrowPosition = (sliderValue - 0.38) / (0.45 - 0.38) * zoneWidth + zoneWidth * 3;
+            else // Battle-Scarred
+                arrowPosition = (sliderValue - 0.45) / (1 - 0.45) * zoneWidth + zoneWidth * 4;
+
+            Canvas.SetLeft(arrow, arrowPosition);
+
+            arrow.Visibility = Visibility.Visible;
+            Color arrowColor = GetColorForSliderValue(sliderValue);
+
+            double arrowTop = 15 + 15; // The top position of the rectangles plus their height plus some padding
+            Canvas.SetTop(arrow, arrowTop);
+
+            // Assuming the height of the arrow is 20, set the top position of the text just below the arrow
+            double textTop = arrowTop + 15 + 4; // Additional padding below the arrow
+            Canvas.SetTop(LeftFloatValue, textTop);
+
+            LeftFloatValue.Foreground = new SolidColorBrush(GetColorForSliderValue(sliderValue));
+            LeftFloatValue.Text = sliderValue.ToString("F3") + "";
+            // Center the text on the arrow
+            Canvas.SetLeft(LeftFloatValue, arrowPosition - (LeftFloatValue.ActualWidth / 2) + 10);
         }
 
-        private double CalculateArrowPosition(double profit)
+
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var zones = new[]
-            {
-                (start: 0.0, end: 80.0, minProfit: 50.0, maxProfit: 200.0), // Dark Green zone
-                (start: 80.0, end: 160.0, minProfit: 30.0, maxProfit: 49.99), // Light Green zone
-                (start: 160.0, end: 240.0, minProfit: 15.0, maxProfit: 29.99), // Yellow zone
-                (start: 240.0, end: 320.0, minProfit: 5.0, maxProfit: 14.99), // Orange zone
-                (start: 320.0, end: CanvasWidth, minProfit: -50.0, maxProfit: 4.99) // Red zone
-            };
+            double sliderValue = (double)value;
+            double canvasWidth = 200; // Replace with the actual canvas width if different
 
-            var currentZone = zones.FirstOrDefault(zone => profit >= zone.minProfit && profit <= zone.maxProfit);
-
-            if (currentZone == default((double, double, double, double)))
-            {
-                if (profit < zones[0].minProfit)
-                {
-                    return CanvasWidth - ArrowWidth;
-                }
-                else
-                {
-                    return 0.0;
-                }
-            }
-
-            double normalizedProfit = (currentZone.maxProfit - profit) / (currentZone.maxProfit - currentZone.minProfit);
-            double positionWithinZone = normalizedProfit * (currentZone.end - currentZone.start);
-            double arrowPosition = currentZone.start + positionWithinZone;
-
-            arrowPosition = Math.Max(currentZone.start, Math.Min(arrowPosition, currentZone.end - ArrowWidth));
-
-            return arrowPosition;
+            // This calculation ensures that the arrow does not go outside the canvas
+            double arrowWidth = 20; // Replace with the actual arrow width
+            return Math.Max(0, Math.Min(canvasWidth - arrowWidth, sliderValue * (canvasWidth - arrowWidth)));
         }
 
         private Color GetColorForSliderValue(double sliderValue)
         {
-            if (sliderValue < 0.2) return Colors.Red;
-            else if (sliderValue < 0.4) return Colors.Orange;
-            else if (sliderValue < 0.6) return Colors.Yellow;
-            else if (sliderValue < 0.8) return Colors.LightGreen;
-            else return Colors.DarkGreen;
+            sliderValue = Math.Min(sliderValue, 0.999);
+
+
+            if (sliderValue >= 0.45) return Colors.Red; // Battle-Scarred
+            else if (sliderValue >= 0.38) return Colors.Orange; // Well-Worn
+            else if (sliderValue >= 0.15) return Colors.Yellow; // Field-Tested
+            else if (sliderValue >= 0.07) return Colors.LightGreen; // Minimal Wear
+            else return Colors.DarkGreen; // Factory New
         }
+
 
         private void UploadImage_Click(object sender, RoutedEventArgs e)
         {
@@ -164,6 +167,25 @@ namespace GestionCSkin
                 }
             }
         }
+
+        private double CalculateArrowPosition(double sliderValue)
+        {
+            // Adjust the slider value to the maximum of 0.999 if necessary
+            sliderValue = Math.Min(sliderValue, 0.999);
+
+            // The total width of all rectangles
+            double totalWidth = 200.0; // Assuming the total width of the color bar is 200
+
+            // The offset for the arrow's position to start from the left edge of the first rectangle
+            double offset = ArrowWidth / 2.0;
+
+            // Calculate the position within the total width
+            double positionWithinTotalWidth = sliderValue / 0.999 * totalWidth;
+
+            // Adjust the arrow's position to align with the left edge of the color bar
+            return positionWithinTotalWidth - offset;
+        }
+
 
         private T FindVisualChild<T>(DependencyObject parent) where T : DependencyObject
         {
@@ -202,13 +224,6 @@ namespace GestionCSkin
                 LeftPrice.Text = string.Empty;
             }
         }
-
-
-
-
-
-
-
     }
 
 
