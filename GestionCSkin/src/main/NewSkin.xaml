@@ -50,7 +50,7 @@
                 </TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Right">
-                <Button Content="Calculate Profit" Style="{StaticResource NavButtonStyle}" />
+                <Button Content="Calculate Profit" Style="{StaticResource NavButtonStyle}" Click="ProfitButton_Click"/>
                 <Button Content="Statistics" Style="{StaticResource NavButtonStyle}" />
                 <Button Content="Sales" Style="{StaticResource NavButtonStyle}" />
                 <Button Content="Add" Style="{StaticResource NavButtonStyle}" Margin="0,0,30,0" Foreground="#FFFF6B00" IsEnabled="False"/>
