@@ -88,10 +88,10 @@
         <!-- Partie droite pour la saisie des informations -->
         <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Width="300" Margin="0,24,0,23">
             <Label Content="Nom du skin" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="185"/>
-            <TextBox x:Name="SkinNameInput" Width="176" Margin="0,0,0,10" Height="25"/>
+            <TextBox x:Name="SkinNameInput" Width="176" Margin="0,0,0,10" Height="25" Padding="0,4,0,0"/>
 
             <Label Content="Prix d'achat" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="185"/>
-            <TextBox x:Name="PriceInput" Width="176" Margin="0,0,0,10" TextChanged="PriceInput_TextChanged" Height="25"/>
+            <TextBox x:Name="PriceInput" Width="176" Margin="0,0,0,10" Padding="0,4,0,0" TextChanged="PriceInput_TextChanged" Height="25"/>
 
             <Label Content="Type" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="185"/>
             <ComboBox x:Name="TypeInput" Width="176" Margin="0,0,0,10" Height="25">
