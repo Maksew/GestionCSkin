@@ -112,13 +112,11 @@
     <Folder Include="src\test\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".gitignore" />
     <Content Include="img\readme\NewSkinDefault.png" />
     <Content Include="img\readme\NewSkinFull.png" />
     <Content Include="img\readme\ProfitCalculatorDefault.png" />
     <Content Include="img\readme\ProfitCalculatorTest1.png" />
     <Content Include="img\readme\ProfitCalculatorTest2.png" />
-    <Content Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
