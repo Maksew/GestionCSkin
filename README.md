@@ -14,6 +14,42 @@ Bienvenue sur GestionCSkin, un outil intuitif et riche en fonctionnalités conç
 
 GestionCSkin est construit avec la communauté à l'esprit, offrant une plateforme centralisée pour gérer efficacement vos skins CS2. Que vous soyez un trader occasionnel ou un collectionneur aguerri, GestionCSkin est le compagnon idéal pour vous aider à rester à la pointe du marché CS:GO.
 
+## Aperçus de l'Application
+
+### Page Principale
+[...]
+
+### Calculateur de Profit 
+*Cette capture d'écran montre l'interface du calculateur de profit dans son état par défaut, prêt à ce que l'utilisateur entre les prix d'achat et de vente.*
+
+![Calculateur de Profit - Par Défaut](GestionCSkin/img/readme/ProfitCalculatorDefault.png)
+
+*Dans cet exemple, l'utilisateur a entré un prix d'achat et de vente, et le profit calculé est affiché, positionnant la flèche sur la barre de couleur selon la marge de profit.*
+
+![Test de Calculateur de Profit 1](GestionCSkin/img/readme/ProfitCalculatorTest1.png)
+
+*Une autre instance du calculateur de profit avec des valeurs différentes, démontrant comment l'outil s'adapte pour afficher des profits plus élevés.*
+
+![Test de Calculateur de Profit 2](GestionCSkin/img/readme/ProfitCalculatorTest2.png)
+
+### Statistique
+[...]
+
+### Ventes
+[...]
+
+### Ajout d'un Nouveau Skin
+
+*Cette image illustre l'écran d'ajout d'un nouveau skin avec tous les champs réinitialisés, prêts pour la saisie des informations du nouveau skin par l'utilisateur.*
+
+![Page Principale](GestionCSkin/img/readme/NewSkinDefault.png)
+
+*Ici, nous voyons l'écran après qu'un utilisateur ait rempli les détails pour ajouter un nouveau skin, y compris le nom, le type, le prix et le float, avec un aperçu visuel du skin.*
+
+![Ajout d'un Nouveau Skin](GestionCSkin/img/readme/NewSkinFull.png)
+
+
+
 ## Installation 🔧
 
 [...]
