@@ -109,6 +109,7 @@
     <None Include="src\main\App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="img\readme\" />
     <Folder Include="src\test\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
