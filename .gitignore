@@ -1,7 +1,50 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
+﻿# Dossiers de build et de débogage
+[Bb]in/
+[Oo]bj/
+[Dd]ebug*/
+[Rr]elease*/
 
-/GestionCSkin/App.config
+# Fichiers de configuration de l'utilisateur
+*.user
+*.userosscache
+*.suo
+*.userprefs
 
+# Fichiers de l'IDE Visual Studio / Rider / Autres IDEs
 .vs/
+.idea/
+
+# Fichiers de cache build/compile
+*.csprojResolveAssemblyReference.cache
+
+# Autres fichiers et dossiers
+*.pidb
+*.svclog
+*.scc
+
+# Fichiers de paramètres spécifiques à l'environnement
+App.config
+
+# Dossiers de sauvegarde générés par Windows
+[Tt]humbs.db
+[Dd]esktop.ini
+
+# Fichiers de sauvegarde créés par éditeurs de texte
+*~
+*.bak
+*.swp
+*.tmp
+
+# Fichiers et dossiers généralement ignorés
+packages/
+*.nupkg
+*.snk
+ReSharper*/
+
+# Fichiers de projets et de solutions spécifiques qui ne doivent pas être ignorés
+!GestionCSkin/GestionCSkin.sln
+!GestionCSkin/GestionCSkin.csproj
+
+# Dossiers contenant des fichiers images et ressources qui doivent être conservés
+!img/
+!GestionCSkin/Resources/
