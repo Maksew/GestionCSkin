@@ -51,7 +51,7 @@ namespace GestionCSkin
             InitializeComponent();
             IsClosed = false;
             this.Closed += NewSkin_Closed;
-            FloatSlider.ValueChanged += FloatSlider_ValueChanged; 
+            FloatSlider.ValueChanged += FloatSlider_ValueChanged;
         }
 
         #region NavButtons
@@ -163,10 +163,10 @@ namespace GestionCSkin
 
         private double CalculateArrowPosition(double sliderValue)
         {
-            sliderValue = Math.Min(sliderValue, 0.999);
+            sliderValue = Math.Min(sliderValue, 0.9999); 
             double totalWidth = 200.0; 
             double offset = ArrowWidth / 2.0;
-            double positionWithinTotalWidth = sliderValue / 0.999 * totalWidth;
+            double positionWithinTotalWidth = sliderValue / 0.9999 * totalWidth;
             return positionWithinTotalWidth - offset;
         }
 

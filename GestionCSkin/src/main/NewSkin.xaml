@@ -108,9 +108,9 @@
 
             <StackPanel Orientation="Horizontal" Margin="0,10" Width="175">
                 <Label Content="Float :" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="90"/>
-                <TextBlock x:Name="FloatValueTextBlock" Text="{Binding Value, ElementName=FloatSlider, StringFormat=\{0:F3\}}" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="55" RenderTransformOrigin="-0.055,0.794" Height="25"/>
+                <TextBlock x:Name="FloatValueTextBlock" Text="{Binding Value, ElementName=FloatSlider, StringFormat=\{0:F3\}}" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="70" RenderTransformOrigin="-0.055,0.794" Height="25"/>
             </StackPanel>
-            <Slider x:Name="FloatSlider" Minimum="0" Maximum="0.999" TickFrequency="0.01" IsSnapToTickEnabled="True" Width="216" Margin="0,0,0,10"/>
+            <Slider x:Name="FloatSlider" Minimum="0" Maximum="0.999" TickFrequency="0.001" IsSnapToTickEnabled="True" Width="216" Margin="0,0,0,10"/>
             <Button Content="Ajouter" FontSize="14" Width="176" Margin="0,10,0,10" BorderThickness="0" Style="{StaticResource CalculateButtonStyle}" Height="31"/>
         </StackPanel>
 
