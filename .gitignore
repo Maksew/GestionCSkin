@@ -1,50 +1,43 @@
-﻿# Dossiers de build et de débogage
+﻿# Dossiers de build et binaires
 [Bb]in/
 [Oo]bj/
 [Dd]ebug*/
 [Rr]elease*/
 
-# Fichiers de configuration de l'utilisateur
+# Fichiers spécifiques à l'utilisateur ou au débogage
 *.user
 *.userosscache
 *.suo
 *.userprefs
+*.log
 
-# Fichiers de l'IDE Visual Studio / Rider / Autres IDEs
-.vs/
+# IDEs et outils de développement
 .idea/
+.vs/
+*.vsconfig
 
-# Fichiers de cache build/compile
+# Cache de compilation
 *.csprojResolveAssemblyReference.cache
-
-# Autres fichiers et dossiers
 *.pidb
 *.svclog
 *.scc
 
-# Fichiers de paramètres spécifiques à l'environnement
-App.config
-
-# Dossiers de sauvegarde générés par Windows
+# Fichiers système ou sauvegardes
 [Tt]humbs.db
 [Dd]esktop.ini
-
-# Fichiers de sauvegarde créés par éditeurs de texte
 *~
 *.bak
 *.swp
 *.tmp
 
-# Fichiers et dossiers généralement ignorés
+# Paquets NuGet
 packages/
 *.nupkg
-*.snk
-ReSharper*/
+project.lock.json
+project.fragment.lock.json
 
-# Fichiers de projets et de solutions spécifiques qui ne doivent pas être ignorés
-!GestionCSkin/GestionCSkin.sln
-!GestionCSkin/GestionCSkin.csproj
-
-# Dossiers contenant des fichiers images et ressources qui doivent être conservés
+# Ressources à conserver explicitement
 !img/
 !GestionCSkin/Resources/
+!GestionCSkin/GestionCSkin.sln
+!GestionCSkin/GestionCSkin.csproj

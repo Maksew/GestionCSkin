@@ -113,9 +113,6 @@
     <None Include="src\App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src\test\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="img\readme\NewSkinDefault.png" />
     <Content Include="img\readme\NewSkinFull.png" />
     <Content Include="img\readme\ProfitCalculatorDefault.png" />
