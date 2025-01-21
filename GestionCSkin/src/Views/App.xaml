@@ -1,7 +1,7 @@
 ﻿<Application x:Class="GestionCSkin.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:GestionCSkin"
+             xmlns:local="clr-namespace:GestionCSkin.ViewModels"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <SolidColorBrush x:Key="BrandOrange" Color="#FF6B00"/>
@@ -24,7 +24,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                        <Border x:Name="border" Background="{TemplateBinding 
+                        Background}" Padding="{TemplateBinding Padding}">
                             <Grid>
                                 <TextBlock x:Name="textBlock" Text="{TemplateBinding Content}" 
                                    Foreground="{TemplateBinding Foreground}" 
@@ -37,8 +38,10 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="textBlock" Property="Foreground" Value="{StaticResource BrandOrange}" />
-                                <Setter TargetName="underline" Property="Fill" Value="{StaticResource BrandOrange}" />
+                                <Setter TargetName="textBlock" Property="Foreground" 
+                                        Value="{StaticResource BrandOrange}" />
+                                <Setter TargetName="underline" Property="Fill" 
+                                        Value="{StaticResource BrandOrange}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -75,7 +78,8 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="{StaticResource HoverColor}" />
+                                <Setter TargetName="border" Property="Background" 
+                                        Value="{StaticResource HoverColor}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -85,7 +89,8 @@
 
 
 
-        <Style x:Key="LastCategoryButtonStyle" TargetType="Button" BasedOn="{StaticResource CategoryButtonStyle}">
+        <Style x:Key="LastCategoryButtonStyle" TargetType="Button" 
+               BasedOn="{StaticResource CategoryButtonStyle}">
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
 

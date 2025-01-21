@@ -1,0 +1,67 @@
+﻿<Window x:Class="GestionCSkin.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="GestionCSkin" Height="450" Width="800">
+    <Grid Background="{StaticResource MainBackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Barre de navigation supérieure -->
+        <DockPanel Grid.Row="0" Background="{StaticResource NavBarBackground}">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Center">
+                <TextBlock Width="174" Margin="30,0,0,0">
+                    <Run Foreground="#FFFF6B00" FontSize="26" FontWeight="Bold" Text="Gestion"/>
+                    <Run Foreground="White" FontSize="26" FontWeight="Bold" Text="CSkin"/>
+                </TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center" 
+                        HorizontalAlignment="Right">
+                <!-- Boutons utilisant les Commandes -->
+                <Button Content="Calculate Profit" Style="{StaticResource NavButtonStyle}" 
+                        Command="{Binding OpenProfitCalculatorCommand}" />
+                <Button Content="Statistics" Style="{StaticResource NavButtonStyle}" 
+                        Command="{Binding OpenStatisticsCommand}" />
+                <Button Content="Sales" Style="{StaticResource NavButtonStyle}" 
+                        Command="{Binding OpenSalesCommand}" />
+                <Button Content="Add" Style="{StaticResource NavButtonStyle}" Margin="0,0,30,0" 
+                        Command="{Binding OpenAddSkinCommand}" />
+            </StackPanel>
+        </DockPanel>
+
+        <!-- Barre de catégories de produits -->
+        <UniformGrid Grid.Row="1" Columns="10" Background="{StaticResource ProductCategoryBackground}">
+            <!-- Boutons avec commandes bindées -->
+            <Button Content="Knife" Style="{StaticResource CategoryButtonStyle}" 
+                    Command="{Binding SelectKnifeCommand}" />
+            <Button Content="Rifle" Style="{StaticResource CategoryButtonStyle}" 
+                    Command="{Binding SelectRifleCommand}" />
+            <Button Content="Gants" Style="{StaticResource CategoryButtonStyle}" 
+                    Command="{Binding SelectGantsCommand}" />
+            <Button Content="Smg" Style="{StaticResource CategoryButtonStyle}" 
+                    Command="{Binding SelectSmgCommand}" />
+            <Button Content="Pistol" Style="{StaticResource CategoryButtonStyle}" 
+                    Command="{Binding SelectPistolCommand}" />
+            <Button Content="Others" Style="{StaticResource CategoryButtonStyle}" 
+                    Command="{Binding SelectOthersCommand}" />
+            <Button Content="Agents" Style="{StaticResource CategoryButtonStyle}" 
+                    Command="{Binding SelectAgentsCommand}" />
+            <Button Content="Heavy" Style="{StaticResource LastCategoryButtonStyle}" 
+                    Command="{Binding SelectHeavyCommand}" />
+        </UniformGrid>
+
+        <!-- Barre blanche sous la barre de catégories -->
+        <Border Grid.Row="1" Height="2" Background="White" VerticalAlignment="Bottom" />
+
+        <!-- Contenu principal -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="219*" />
+                <ColumnDefinition Width="181*" />
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </Grid>
+</Window>

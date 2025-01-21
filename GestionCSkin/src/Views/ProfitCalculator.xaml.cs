@@ -1,14 +1,15 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using GestionCSkin.ViewModels;
 
-namespace GestionCSkin
+    namespace GestionCSkin.Views
 {
     public partial class ProfitCalculator : Window
     {
-
         private static ProfitCalculator instance;
 
         public static ProfitCalculator Instance
@@ -23,16 +24,27 @@ namespace GestionCSkin
             }
         }
 
+        public bool IsClosed { get; private set; }
+
         private const double CanvasWidth = 400; 
         private const double ArrowWidth = 20;
-
-        public bool IsClosed { get; private set; }
 
         public ProfitCalculator()
         {
             InitializeComponent();
             IsClosed = false;
             this.Closed += (sender, e) => IsClosed = true;
+
+            // Si vous n’avez pas défini le DataContext dans le XAML,
+            // faites-le ici :
+            // DataContext = new ProfitCalculatorViewModel();
+
+            // On s’abonne au PropertyChanged du VM, pour réagir
+            var vm = DataContext as ProfitCalculatorViewModel;
+            if (vm != null)
+            {
+                vm.PropertyChanged += OnViewModelPropertyChanged;
+            }
         }
 
         #region NavButtons
@@ -44,24 +56,17 @@ namespace GestionCSkin
         }
         #endregion
 
-
-        private void CalculateProfit_Click(object sender, RoutedEventArgs e)
+        private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (!double.TryParse(txtBuyPrice.Text, out double buyPrice))
+            if (e.PropertyName == nameof(ProfitCalculatorViewModel.Profit))
             {
-                MessageBox.Show("Le prix d'achat n'est pas un nombre valide.");
-                return;
+                // Dès que la propriété "Profit" du VM change,
+                // on met à jour l'affichage visuel
+                var vm = (ProfitCalculatorViewModel)sender;
+                double profit = vm.Profit;
+
+                UpdateProfitDisplay(profit);
             }
-
-            if (!double.TryParse(txtSellPrice.Text, out double sellPrice))
-            {
-                MessageBox.Show("Le prix de vente n'est pas un nombre valide.");
-                return;
-            }
-
-            double profit = CalculateNetProfit(buyPrice, sellPrice);
-
-            UpdateProfitDisplay(profit);
         }
 
         private void UpdateProfitDisplay(double profit)
@@ -77,49 +82,50 @@ namespace GestionCSkin
             Color zoneColor = GetColorForProfit(profit);
             txtProfitResult.Foreground = new SolidColorBrush(zoneColor);
 
-            txtProfitResult.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
-
+            // On calcule la position idéale du texte
+            txtProfitResult.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             double arrowCenter = arrowPosition + (ArrowWidth / 2);
             double textCenter = txtProfitResult.DesiredSize.Width / 2;
             Canvas.SetLeft(txtProfitResult, arrowCenter - textCenter);
             Canvas.SetTop(txtProfitResult, Canvas.GetTop(arrow) + 20); 
         }
 
-
         private double CalculateArrowPosition(double profit)
         {
+            // Votre logique de répartition en zones
+            // (Exemple existant, gardé tel quel)
             var zones = new[]
             {
-                (start: 0.0, end: 80.0, minProfit: 50.0, maxProfit: 200.0), // Dark Green zone
-                (start: 80.0, end: 160.0, minProfit: 30.0, maxProfit: 49.99), // Light Green zone
-                (start: 160.0, end: 240.0, minProfit: 15.0, maxProfit: 29.99), // Yellow zone
-                (start: 240.0, end: 320.0, minProfit: 5.0, maxProfit: 14.99), // Orange zone
-                (start: 320.0, end: CanvasWidth, minProfit: -50.0, maxProfit: 4.99) // Red zone
+                (start: 0.0,   end: 80.0,  minProfit: 50.0,   maxProfit: 200.0),
+                (start: 80.0,  end: 160.0, minProfit: 30.0,   maxProfit: 49.99),
+                (start: 160.0, end: 240.0, minProfit: 15.0,   maxProfit: 29.99),
+                (start: 240.0, end: 320.0, minProfit: 5.0,    maxProfit: 14.99),
+                (start: 320.0, end: 400.0, minProfit: -50.0,  maxProfit: 4.99)
             };
 
-            var currentZone = zones.FirstOrDefault(zone => profit >= zone.minProfit && profit <= zone.maxProfit);
+            var currentZone = zones.FirstOrDefault(zone => 
+                profit >= zone.minProfit && profit <= zone.maxProfit);
 
-            if (currentZone == default((double, double, double, double)))
+            // Si pas trouvé => on sort de la plage
+            if (currentZone == default)
             {
-                if (profit < zones[0].minProfit)
-                {
+                // Si profit < zone min => tout à droite ou tout à gauche selon votre logique
+                if (profit < zones.Last().minProfit)
                     return CanvasWidth - ArrowWidth;
-                }
                 else
-                {
                     return 0.0;
-                }
             }
 
-            double normalizedProfit = (currentZone.maxProfit - profit) / (currentZone.maxProfit - currentZone.minProfit);
+            // Normalisation
+            double normalizedProfit = (currentZone.maxProfit - profit) 
+                                      / (currentZone.maxProfit - currentZone.minProfit);
             double positionWithinZone = normalizedProfit * (currentZone.end - currentZone.start);
             double arrowPosition = currentZone.start + positionWithinZone;
-
-            arrowPosition = Math.Max(currentZone.start, Math.Min(arrowPosition, currentZone.end - ArrowWidth));
+            arrowPosition = Math.Max(currentZone.start, 
+                             Math.Min(arrowPosition, currentZone.end - ArrowWidth));
 
             return arrowPosition;
         }
-
 
         private Color GetColorForProfit(double profit)
         {
@@ -133,18 +139,6 @@ namespace GestionCSkin
                 return Colors.Orange;
             else
                 return Colors.Red;
-        }
-
-        private double CalculateNetProfit(double buyPrice, double sellPrice)
-        {
-            double feePercentage = sellPrice > 1000 ? 0.06 : 0.12;
-            double fees = sellPrice * feePercentage;
-            return sellPrice - buyPrice - fees;
-        }
-
-        private void txtBuyPrice_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }
