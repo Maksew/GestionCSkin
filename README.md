@@ -61,34 +61,25 @@ GestionCSkin est construit avec la communauté à l'esprit, offrant une platefor
 ## Architecture du Projet 🏗️
 
 ```
-GestionCSkin
-│
-├── Properties
-│ ├── AssemblyInfo.cs
-│ ├── Resources.resx 
-│ └── Settings.settings 
-│
-├── References 
-│
-└── src
-└── main
-├── App.config 
-├── App.xaml 
-├── App.xaml.cs 
-│
-├── MainWindow
-│ ├── MainWindow.xaml # Définition de l'interface utilisateur pour la fenêtre principale.
-│ └── MainWindow.xaml.cs 
-│
-├── NewSkin
-│ ├── NewSkin.xaml # Interface utilisateur pour l'ajout et la gestion de nouveaux skins.
-│ └── NewSkin.xaml.cs 
-│
-└── ProfitCalculator
-├── ProfitCalculator.xaml # Interface utilisateur pour le calcul du profit des skins.
-└── ProfitCalculator.xaml.cs 
-
-└── test # Dossier pour les tests unitaires et d'intégration.
+GestionCSkin/
+├── src/
+│   ├── Model/
+│   │   ├── Inventory.cs
+│   │   ├── ProfitCalculatorService.cs
+│   │   ├── Skin.cs
+│   │   ├── SkinType.cs
+│   │   └── Transaction.cs
+│   │
+│   ├── ViewModels/
+│   │   ├── MainWindowViewModel.cs
+│   │   ├── NewSkinViewModel.cs
+│   │   └── ProfitCalculatorViewModel.cs
+│   │
+│   └── Views/
+│       ├── App.xaml
+│       ├── MainWindow.xaml
+│       ├── NewSkin.xaml
+│       └── ProfitCalculator.xaml
 ```
 
 ## Tests 🧪
