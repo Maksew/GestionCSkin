@@ -183,6 +183,5 @@
                     BorderThickness="0" Style="{StaticResource CalculateButtonStyle}" Height="31"
                     Command="{Binding AddSkinCommand}"/>
         </StackPanel>
-
     </Grid>
 </Window>

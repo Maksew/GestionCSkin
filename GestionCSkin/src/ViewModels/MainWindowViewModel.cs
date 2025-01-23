@@ -7,6 +7,7 @@ namespace GestionCSkin.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
+        private readonly SkinService _skinService = new SkinService();
         private ObservableCollection<Skin> _skins;
         public ObservableCollection<Skin> Skins
         {
@@ -23,8 +24,7 @@ namespace GestionCSkin.ViewModels
 
         public MainWindowViewModel()
         {
-            Skins = new ObservableCollection<Skin>();
-
+            LoadSkins();
             OpenAddSkinCommand = new RelayCommand(_ => OpenAddSkin());
             OpenProfitCalculatorCommand = new RelayCommand(_ => OpenProfitCalculator());
         }
@@ -42,5 +42,11 @@ namespace GestionCSkin.ViewModels
             profitCalcWindow.Show();
             profitCalcWindow.Focus();
         }
+        
+        public void LoadSkins()
+        {
+            Skins = new ObservableCollection<Skin>(_skinService.LoadSkins());
+        }
+        
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace GestionCSkin.Model
+﻿using Newtonsoft.Json;
+
+namespace GestionCSkin.Model
 {
     public class Skin
     {
@@ -9,6 +11,9 @@
         public SkinType Type { get; set; }
         
         public string ImagePath { get; set; }
+        
+        [JsonIgnore] 
+        public decimal Profit => SellPrice - BuyPrice;
         
         public Skin() { }
         
