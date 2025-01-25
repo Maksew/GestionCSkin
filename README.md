@@ -102,21 +102,3 @@ GestionCSkin/
 ## Tests 🧪
 
 [...]
-
-## Lignes Directrices pour la Contribution 🤝
-
-Nous accueillons les contributions de la communauté. Voici quelques lignes directrices pour contribuer à GestionCSkin :
-
-- **Fork le Répertoire**: Commencez par forker le répertoire dans votre propre compte GitHub.
-
-- **Créez une Branche de Fonctionnalité**: Créez une nouvelle branche pour votre fonctionnalité (`git checkout -b feature/SuperFonctionnalite`).
-
-- **Committez Vos Changements**: Après avoir fait vos changements, commitez-les avec un message clair (`git commit -m 'Ajout de SuperFonctionnalite'`).
-
-- **Poussez Votre Branche**: Poussez vos changements sur votre branche (`git push origin feature/SuperFonctionnalite`).
-
-- **Ouvrez une Pull Request**: Revenez au répertoire original et ouvrez une pull request avec un titre et une description clairs.
-
-- **Discutez et Revoyez**: Attendez un retour ou une approbation des mainteneurs du projet.
-
-
