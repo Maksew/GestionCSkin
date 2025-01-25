@@ -130,7 +130,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <StackPanel Grid.Column="0">
-                                        <TextBlock Text="Achat" Foreground="#999999" FontSize="11"/>
+                                        <TextBlock Text="Purchase" Foreground="#999999" FontSize="11"/>
                                         <TextBlock 
                                             Text="{Binding BuyPrice, StringFormat={}{0:C} €}"
                                             Foreground="White"

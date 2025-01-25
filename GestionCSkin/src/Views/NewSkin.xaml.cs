@@ -138,10 +138,7 @@ namespace GestionCSkin.Views
             Canvas.SetLeft(LeftFloatValue, centerX);
             Canvas.SetTop(LeftFloatValue, 45);
         }
-
-
-
-
+        
         // Détermine une couleur selon la “float”
         private Color GetColorForFloat(double sliderValue)
         {

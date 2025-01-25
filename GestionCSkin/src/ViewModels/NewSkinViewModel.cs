@@ -135,14 +135,9 @@ namespace GestionCSkin.ViewModels
         // Mise à jour de l'UI
         if (Application.Current.MainWindow.DataContext is MainWindowViewModel mainVm)
         {
-            // Ajout direct au ObservableCollection (plus efficace)
             mainVm.Skins.Add(newSkin); 
-            
-            // Alternative si besoin de recharger depuis le fichier :
-            // mainVm.LoadSkins();
         }
-
-        // Réinitialisation du formulaire
+        
         ResetForm();
         
         MessageBox.Show("Skin ajouté avec succès !", "Succès",

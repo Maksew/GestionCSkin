@@ -58,7 +58,7 @@
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Center">
                 <TextBlock Width="207" Margin="30,0,0,0">
                     <Run Foreground="#FFFF6B00" FontSize="26" FontWeight="Bold" Text="Gestion"/>
-                    <Run Foreground="White" FontSize="26" FontWeight="Bold" Text="SkinPort"/>
+                    <Run Foreground="White" FontSize="26" FontWeight="Bold" Text="CSkin"/>
                 </TextBlock>
             </StackPanel>
 
@@ -99,7 +99,7 @@
                 <TextBlock Text="{Binding SkinName}" 
                            Foreground="White" FontSize="18" Margin="0,5" Width="205" TextAlignment="Center"/>
 
-                <TextBlock Text="Prix d'achat :" 
+                <TextBlock Text="Purchase price :" 
                            FontWeight="Bold" Foreground="#B5B5B5" FontSize="16" Width="215"/>
                 <!-- Prix d'achat (formaté en devise) -->
                 <TextBlock Text="{Binding BuyPrice, StringFormat={}{0:C}}" 
@@ -134,19 +134,19 @@
         </Border>
 
         <!-- Partie droite : saisie des infos (binding MVVM) -->
-        <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Width="300" Margin="0,24,0,23">
-            <Label Content="Nom du skin" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="185"/>
+        <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Width="300" Margin="0,20,0,15">
+            <Label Content="Name" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="185"/>
             <!-- Nom du skin => Binding direct -->
-            <TextBox Width="176" Margin="0,0,0,10" Height="25" Padding="0,4,0,0"
+            <TextBox Width="176" Margin="0,5,0,5" Height="25" Padding="0,4,0,0"
                      Text="{Binding SkinName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Content="Prix d'achat" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="185"/>
+            <Label Content="Purchase price" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="185"/>
             <!-- Prix d'achat => Binding direct -->
-            <TextBox Width="176" Margin="0,0,0,10" Padding="0,4,0,0" Height="25"
+            <TextBox Width="176" Margin="0,5,0,5" Padding="0,4,0,0" Height="25"
                      Text="{Binding BuyPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Content="Type" FontSize="21" FontWeight="Bold" Foreground="#B5B5B5" Width="185"/>
-            <ComboBox Width="176" Margin="0,0,0,10" Height="25"
+            <ComboBox Width="176" Margin="0,5,0,5" Height="25"
                       ItemsSource="{Binding Source={StaticResource SkinTypeEnumValues}}"
                       SelectedItem="{Binding SelectedSkinType, Mode=TwoWay, 
                       UpdateSourceTrigger=PropertyChanged}" />
@@ -179,7 +179,7 @@
                     Value="{Binding FloatValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     ValueChanged="FloatSlider_ValueChanged"/>
 
-            <Button Content="Ajouter" FontSize="14" Width="176" Margin="0,10,0,10" 
+            <Button Content="Add" FontSize="16" Width="176" Margin="0,15,0,10" 
                     BorderThickness="0" Style="{StaticResource CalculateButtonStyle}" Height="31"
                     Command="{Binding AddSkinCommand}"/>
         </StackPanel>
