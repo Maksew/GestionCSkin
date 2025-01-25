@@ -62,24 +62,41 @@ GestionCSkin est construit avec la communauté à l'esprit, offrant une platefor
 
 ```
 GestionCSkin/
+│
 ├── src/
+│   │
+│   ├── Converters/
+│   │     FloatPositionConverter.cs
+│   │     ImagePathConverter.cs
+│   │     ProfitColorConverter.cs
+│   │
 │   ├── Model/
-│   │   ├── Inventory.cs
-│   │   ├── ProfitCalculatorService.cs
-│   │   ├── Skin.cs
-│   │   ├── SkinType.cs
-│   │   └── Transaction.cs
+│   │     Skin.cs          # Entité principale
+│   │     SkinType.cs      # Types de skins
+│   │     SkinService.cs   # Gestion JSON
 │   │
 │   ├── ViewModels/
-│   │   ├── MainWindowViewModel.cs
-│   │   ├── NewSkinViewModel.cs
-│   │   └── ProfitCalculatorViewModel.cs
+│   │     BaseViewModel.cs    # Core MVVM
+│   │     RelayCommand.cs     # Commandes
+│   │     MainWindowViewModel.cs
+│   │     NewSkinViewModel.cs
 │   │
 │   └── Views/
-│       ├── App.xaml
-│       ├── MainWindow.xaml
-│       ├── NewSkin.xaml
-│       └── ProfitCalculator.xaml
+│         MainWindow.xaml     # Vue principale
+│         NewSkin.xaml        # Formulaire d'ajout
+│         ProfitCalculator.xaml
+│
+├── Config/
+│     App.config
+│     packages.config
+│
+└── skins.json                 # Base de données des skins
+
+**Éléments clés** :
+- Architecture MVVM 
+- Persistance JSON (SkinService) 
+- Convertisseurs UI pour images/profit/float 
+- Workflow complet : Ajout ➔ Stockage ➔ Affichage
 ```
 
 ## Tests 🧪
