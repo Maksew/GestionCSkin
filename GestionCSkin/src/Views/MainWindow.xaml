@@ -28,7 +28,8 @@
                 </TextBlock>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center" 
+                        HorizontalAlignment="Right">
                 <Button Content="Calculate Profit" Style="{StaticResource NavButtonStyle}" 
                         Command="{Binding OpenProfitCalculatorCommand}" />
                 <Button Content="Statistics" Style="{StaticResource NavButtonStyle}" 
@@ -42,86 +43,153 @@
 
         <!-- Barre de catégories (identique) -->
         <UniformGrid Grid.Row="1" Columns="10" Background="{StaticResource ProductCategoryBackground}">
-            <Button Content="Knife" Style="{StaticResource CategoryButtonStyle}" Command="{Binding SelectKnifeCommand}" />
-            <Button Content="Rifle" Style="{StaticResource CategoryButtonStyle}" Command="{Binding SelectRifleCommand}" />
-            <Button Content="Gants" Style="{StaticResource CategoryButtonStyle}" Command="{Binding SelectGantsCommand}" />
-            <Button Content="Smg" Style="{StaticResource CategoryButtonStyle}" Command="{Binding SelectSmgCommand}" />
-            <Button Content="Pistol" Style="{StaticResource CategoryButtonStyle}" Command="{Binding SelectPistolCommand}" />
-            <Button Content="Others" Style="{StaticResource CategoryButtonStyle}" Command="{Binding SelectOthersCommand}" />
-            <Button Content="Agents" Style="{StaticResource CategoryButtonStyle}" Command="{Binding SelectAgentsCommand}" />
-            <Button Content="Heavy" Style="{StaticResource LastCategoryButtonStyle}" Command="{Binding SelectHeavyCommand}" />
+            <Button Content="Knife" Style="{StaticResource CategoryButtonStyle}" 
+                    Command="{Binding SelectKnifeCommand}" />
+            <Button Content="Rifle" Style="{StaticResource CategoryButtonStyle}" 
+                    Command="{Binding SelectRifleCommand}" />
+            <Button Content="Gants" Style="{StaticResource CategoryButtonStyle}" 
+                    Command="{Binding SelectGantsCommand}" />
+            <Button Content="Smg" Style="{StaticResource CategoryButtonStyle}" 
+                    Command="{Binding SelectSmgCommand}" />
+            <Button Content="Pistol" Style="{StaticResource CategoryButtonStyle}" 
+                    Command="{Binding SelectPistolCommand}" />
+            <Button Content="Others" Style="{StaticResource CategoryButtonStyle}" 
+                    Command="{Binding SelectOthersCommand}" />
+            <Button Content="Agents" Style="{StaticResource CategoryButtonStyle}" 
+                    Command="{Binding SelectAgentsCommand}" />
+            <Button Content="Heavy" Style="{StaticResource LastCategoryButtonStyle}" 
+                    Command="{Binding SelectHeavyCommand}" />
         </UniformGrid>
 
         <!-- Barre blanche sous les catégories (identique) -->
         <Border Grid.Row="1" Height="2" Background="White" VerticalAlignment="Bottom" />
 
         <!-- Liste des skins (NOUVEAU CONTENU) -->
-        <ScrollViewer Grid.Row="2" Padding="20">
-            <ItemsControl ItemsSource="{Binding Skins}">
+        <ScrollViewer 
+            Grid.Row="2"
+            Padding="15"
+            Background="#252525" 
+            VerticalScrollBarVisibility="Auto">
+
+            <ItemsControl 
+                ItemsSource="{Binding Skins}" 
+                ItemsPanel="{StaticResource SkinItemsPanel}">
+
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type model:Skin}">
-                        <Border Background="#333333" Padding="15" Margin="10" Width="280" CornerRadius="5">
+                        <Border
+                            Background="#333333"
+                            Padding="15"
+                            Margin="10"
+                            CornerRadius="12"
+                            SnapsToDevicePixels="True"
+                            Width="225"
+                            Height="340">
+
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="10" ShadowDepth="4" Opacity="0.2"/>
+                            </Border.Effect>
+
                             <StackPanel>
-                                <!-- Image -->
-                                <Image Source="{Binding ImagePath, Converter={StaticResource ImagePathConverter}}" 
-                                       Height="160" Stretch="UniformToFill"/>
+                                <!-- Image carrée -->
+                                <Border 
+                                    Height="150" 
+                                    Width="150" 
+                                    CornerRadius="8"
+                                    ClipToBounds="True"
+                                    Margin="0,0,0,15">
+                                    
+                                    <Image
+                                        Source="{Binding ImagePath, Converter={StaticResource 
+                                        ImagePathConverter}}"
+                                        Stretch="UniformToFill"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                                </Border>
 
                                 <!-- Nom et Type -->
-                                <TextBlock Text="{Binding Name}" 
-                                         Foreground="White" 
-                                         FontSize="18" 
-                                         Margin="0,10"
-                                         TextAlignment="Center"/>
+                                <TextBlock
+                                    Text="{Binding Name}"
+                                    Foreground="White"
+                                    FontSize="16"
+                                    FontWeight="Bold"
+                                    TextTrimming="CharacterEllipsis"
+                                    Margin="0,0,0,6"/>
 
-                                <TextBlock Text="{Binding Type}" 
-                                         Foreground="#B5B5B5" 
-                                         FontSize="14"
-                                         HorizontalAlignment="Center"/>
+                                <TextBlock
+                                    Text="{Binding Type}"
+                                    Foreground="#AAAAAA"
+                                    FontSize="12"
+                                    Margin="0,0,0,8"/>
 
                                 <!-- Prix et Profit -->
-                                <Grid Margin="0,10" HorizontalAlignment="Center">
+                                <Grid Margin="0,0,0,8">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <StackPanel Grid.Column="0" Margin="0,0,20,0">
-                                        <TextBlock Text="Achat :" Foreground="#B5B5B5"/>
-                                        <TextBlock Text="{Binding BuyPrice, StringFormat={}{0:C} €}" Foreground="White"/>
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock Text="Achat" Foreground="#999999" FontSize="11"/>
+                                        <TextBlock 
+                                            Text="{Binding BuyPrice, StringFormat={}{0:C} €}"
+                                            Foreground="White"
+                                            FontSize="12"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1">
-                                        <TextBlock Text="Profit :" Foreground="#B5B5B5"/>
-                                        <TextBlock Text="{Binding Profit, StringFormat={}{0:C} €}" 
-                                                 Foreground="{Binding Profit, Converter={StaticResource ProfitColorConverter}}"/>
+                                        <TextBlock Text="Profit" Foreground="#999999" FontSize="11"/>
+                                        <TextBlock 
+                                            Text="{Binding Profit, StringFormat={}{0:C} €}"
+                                            Foreground="{Binding Profit, Converter={StaticResource 
+                                            ProfitColorConverter}}"
+                                            FontSize="12"/>
                                     </StackPanel>
                                 </Grid>
 
-                                <!-- Barre de float -->
-                                <Border Background="#444444" Padding="10" CornerRadius="5">
-                                    <Canvas Height="40" Width="240">
-                                        <Rectangle Fill="DarkGreen" Width="40" Height="20" Canvas.Left="10"/>
-                                        <Rectangle Fill="LightGreen" Width="40" Height="20" Canvas.Left="50"/>
-                                        <Rectangle Fill="Yellow" Width="40" Height="20" Canvas.Left="90"/>
-                                        <Rectangle Fill="Orange" Width="40" Height="20" Canvas.Left="130"/>
-                                        <Rectangle Fill="Red" Width="40" Height="20" Canvas.Left="170"/>
-                                        
-                                        <Polygon Points="5,0 15,0 10,10" 
-                                               Fill="White"
-                                               Canvas.Left="{Binding FloatValue, Converter={StaticResource FloatPositionConverter}}"
-                                               Canvas.Top="5"/>
+                                <!-- Barre de float  -->
+                                <Border
+                                    CornerRadius="6"
+                                    HorizontalAlignment="Center"
+                                    Width="220"
+                                    Margin="0,20,0,0">
+                                    
+                                    <Canvas Height="40" Width="180">
+                                        <Rectangle Fill="DarkGreen" Width="36" Height="16" Canvas.Left="0"/>
+                                        <Rectangle Fill="#6BD46B"  Width="36" Height="16" Canvas.Left="36"/>
+                                        <Rectangle Fill="Yellow"   Width="36" Height="16" Canvas.Left="72"/>
+                                        <Rectangle Fill="Orange"   Width="36" Height="16" Canvas.Left="108"/>
+                                        <Rectangle Fill="Red"      Width="36" Height="16" Canvas.Left="144"/>
+
+
+                                        <!-- Flèche -->
+                                        <Polygon
+                                            Points="0,14 16,14 8,6"
+                                            Fill="White"
+                                            Stroke="Black"
+                                            Canvas.Top="7"
+                                            Canvas.Left="{Binding FloatValue, 
+                                             Converter={StaticResource NewFloatPositionConverter}, 
+                                             ConverterParameter=arrow}"/>
+
+                                        <!-- Texte sous la barre -->
+                                        <TextBlock
+                                            Text="{Binding FloatValue, StringFormat={}{0:F3}}"
+                                            Canvas.Top="20"
+                                            Canvas.Left="{Binding FloatValue, 
+                                             Converter={StaticResource NewFloatPositionConverter}, 
+                                             ConverterParameter=text}"
+                                            FontSize="11"
+                                            FontWeight="Bold"
+                                            Foreground="{Binding FloatValue, Converter={StaticResource 
+                                             FloatColorConverter}}"
+                                        />
                                     </Canvas>
                                 </Border>
                             </StackPanel>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-                
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
             </ItemsControl>
         </ScrollViewer>
     </Grid>

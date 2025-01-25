@@ -54,9 +54,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\Converters\FloatColorConverter.cs" />
     <Compile Include="src\Converters\FloatPositionConverter.cs" />
     <Compile Include="src\Converters\ImagePathConverter.cs" />
+    <Compile Include="src\Converters\NewFloatPositionConverter.cs" />
     <Compile Include="src\Converters\ProfitColorConverter.cs" />
+    <Compile Include="src\Converters\TextPositionConverter.cs" />
     <Compile Include="src\Model\Inventory.cs" />
     <Compile Include="src\Model\ProfitCalculatorService.cs" />
     <Compile Include="src\Model\Skin.cs" />

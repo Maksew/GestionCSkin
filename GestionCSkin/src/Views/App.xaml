@@ -18,6 +18,9 @@
         <converters:ImagePathConverter x:Key="ImagePathConverter"/>
         <converters:ProfitColorConverter x:Key="ProfitColorConverter"/>
         <converters:FloatPositionConverter x:Key="FloatPositionConverter"/>
+        <converters:NewFloatPositionConverter x:Key="NewFloatPositionConverter"/>
+        <converters:FloatColorConverter x:Key="FloatColorConverter"/>
+        <converters:TextPositionConverter x:Key="TextPositionConverter"/>
 
         <Style x:Key="NavButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent" />
